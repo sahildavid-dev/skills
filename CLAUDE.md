@@ -6,7 +6,7 @@ Skills are organized into bucket folders under `skills/`:
 - `in-progress/`: beta: public on purpose, feedback wanted, not shipped in the plugin
 - `deprecated/`: no longer used
 
-Every skill in `engineering/` or `productivity/` (the **promoted** buckets) must have a reference in the top-level `README.md` and an entry in `.claude-plugin/plugin.json`'s `skills` array. Skills in `misc/`, `in-progress/` and `deprecated/` must not appear in either. Run `claude plugin validate . --strict` after touching either manifest.
+Every skill in `engineering/` or `productivity/` (the **promoted** buckets) must have a reference in the top-level `README.md` and an entry in `.claude-plugin/plugin.json`'s `skills` array. Skills in `misc/`, `in-progress/` and `deprecated/` must not appear in either. Run `claude plugin validate . --strict` after touching either manifest. It always reports one warning, that `CLAUDE.md` at the plugin root is not loaded as plugin context. That is expected: this file is for working on the repo, not for plugin users. Any other warning is a real failure.
 
 Each skill folder holds a `SKILL.md` and an `agents/openai.yaml` (Codex UI metadata: `interface.display_name` and `interface.short_description`).
 
