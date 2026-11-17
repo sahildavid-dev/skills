@@ -1,0 +1,22 @@
+{
+  "name": "sahildavid-dev",
+  "owner": {
+    "name": "Sahil David",
+    "url": "https://github.com/sahildavid-dev"
+  },
+  "description": "Sahil David's skills for real engineering, as an installable Claude Code plugin.",
+  "plugins": [
+    {
+      "name": "sahildavid-skills",
+      "source": "./",
+      "description": "Sahil David's agent skills for real engineering (clean Conventional Commits and more to come).",
+      "category": "engineering",
+      "keywords": [
+        "engineering",
+        "skills",
+        "git",
+        "conventional-commits"
+      ]
+    }
+  ]
+}
