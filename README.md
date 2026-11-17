@@ -148,7 +148,7 @@ More fixes coming as I hit more failure modes.
 
 Clone it and run `scripts/link-skills.sh` to symlink every skill into `~/.claude/skills` and `~/.agents/skills`. A `git pull` then keeps them current. Repo conventions live in [CLAUDE.md](./CLAUDE.md).
 
-Before you push, run `BASE_SHA=origin/main node scripts/check-skills.mjs`. It makes sure every skill is wired into the plugin, READMEs and docs, and that changes to shipped skills come with a version bump, so installs actually pick them up. CI runs it on every PR and push.
+Before you push, run `BASE_SHA=origin/main node scripts/check-skills.mjs`. It makes sure every skill is wired into the plugin, READMEs and docs, and that changes to shipped skills come with a version bump, so installs actually pick them up.
 
 ## License
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // Checks that every skill is wired up and released properly.
-// Runs in CI (.github/workflows/check-skills.yml) and locally:
+// Run it locally before every commit:
 //
 //   node scripts/check-skills.mjs                  # structure checks only
 //   BASE_SHA=origin/main node scripts/check-skills.mjs  # plus the version bump check
