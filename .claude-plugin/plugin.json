@@ -1,7 +1,7 @@
 {
-  "name": "sahildavid-skills",
-  "version": "0.1.0",
-  "description": "Sahil David's agent skills for real engineering work. Small, composable, and built for Claude Code, Codex and any agent that reads SKILL.md.",
+  "name": "sahildavid-dev",
+  "version": "0.2.0",
+  "description": "Sahil David's agent skills for real engineering: verified PR reviews, clean Conventional Commits and more. Small, composable, and built for Claude Code, Codex and any agent that reads SKILL.md.",
   "author": {
     "name": "Sahil David",
     "url": "https://github.com/sahildavid-dev"
@@ -12,11 +12,13 @@
   "keywords": [
     "engineering",
     "skills",
+    "code-review",
+    "pull-requests",
     "git",
-    "conventional-commits",
-    "productivity"
+    "conventional-commits"
   ],
   "skills": [
-    "./skills/engineering/commit"
+    "./skills/engineering/commit",
+    "./skills/engineering/review"
   ]
 }
