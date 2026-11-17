@@ -1,0 +1,3 @@
+interface:
+  display_name: "Commit"
+  short_description: "Make clean Conventional Commits, one change at a time"
