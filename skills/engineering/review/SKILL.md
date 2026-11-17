@@ -30,11 +30,17 @@ Run the state queries in [GITHUB.md](./GITHUB.md#state). Then decide:
 
 Read these before forming any opinion. The review judges the PR against **this repo's** rules, not general taste.
 
-**The rules**, in priority order (an earlier source overrides a later one):
+**The rules**: this skill doesn't rely on any one file existing. Follow [STANDARDS.md](./STANDARDS.md) to find every standard the repo has, written or not:
 
-1. `REVIEW.md` or `.github/REVIEW.md`: the repo's own review checklist. If it exists, every rule in it is a hard rule.
-2. `CLAUDE.md`, `AGENTS.md`, `.github/copilot-instructions.md`, `CONTRIBUTING.md`, `CODING_STANDARDS.md`, and any `docs/` file that is a coding, design or architecture guide.
-3. Tooling config (linter, formatter, `tsconfig`, CI workflows). Anything tooling enforces is **not** a review comment; CI will catch it.
+1. A review checklist (`REVIEW.md`, or the checks in any review command the repo already has), if there is one.
+2. Agent and contributor rules (`CLAUDE.md`, `AGENTS.md`, Copilot and Cursor rules, `CONTRIBUTING.md`), including nested ones in the folders the diff touches.
+3. Design guides, architecture docs, ADRs and glossaries.
+4. Specs for this feature.
+5. The PR template's checklist.
+6. Tooling config, read for intent. Anything tooling enforces is **not** a review comment; CI will catch it.
+7. The unwritten rules: patterns that every sibling of a changed file already follows.
+
+Compile them into one **rule digest**, each rule tagged with its source. Every lens gets the digest. Even a repo with no docs at all gets the full baseline from the four lenses.
 
 **The intent**: the PR title and description, linked issues (`closingIssuesReferences`), commit messages, and any spec the PR or issue points to. This is what the PR is *supposed* to do.
 
@@ -46,7 +52,7 @@ Read these before forming any opinion. The review judges the PR against **this r
 
 Spawn one sub-agent per lens, each with a fresh context window, all in the same turn. If your harness has no sub-agents, run the lenses yourself one after another and finish each before starting the next.
 
-Give every sub-agent: the diff command, the worktree path, the list of rule files from step 2, the intent, and its lens brief **pasted in full** from [LENSES.md](./LENSES.md). They have no other way to see it.
+Give every sub-agent: the diff command, the worktree path, the rule digest and the paths of its source files, the intent, and its lens brief **pasted in full** from [LENSES.md](./LENSES.md). They have no other way to see it.
 
 | Lens | Asks |
 | --- | --- |
@@ -121,4 +127,7 @@ Finish with a short report:
 - PR, head SHA reviewed, round number.
 - Threads: N resolved, N still open, N new comments.
 - Verdict, and one line per open Blocker.
+- **Standards used**: the sources you read in full, the ones you skimmed, and the tiers where the repo had nothing.
 - What you skipped or couldn't check, if anything.
+
+If the repo has no `REVIEW.md`, offer to draft one from the rule digest, so the next review starts from it. Only write it if the user says yes.

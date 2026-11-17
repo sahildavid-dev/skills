@@ -19,7 +19,11 @@ Whenever a PR needs a review: yours before you ask a colleague, a teammate's, or
 
 **Will it post without asking?** No. It shows you the verdict and every comment, writes the full draft to a file you can edit, and waits. You can post as is, post after editing, or post it as a pending review to finish in GitHub.
 
-**How does it know my repo's rules?** It reads `REVIEW.md` (or `.github/REVIEW.md`) first, then `CLAUDE.md`, `AGENTS.md`, `CONTRIBUTING.md` and your docs. Put the rules you care most about in `REVIEW.md`: every line there is treated as a hard rule.
+**How does it know my repo's rules?** It goes looking, and doesn't need any one file to exist. It lists every doc in the repo and reads them by priority: a `REVIEW.md` or existing review command if you have one, agent and contributor files (`CLAUDE.md`, `AGENTS.md`, Copilot and Cursor rules, `CONTRIBUTING.md`, including nested ones), design and architecture docs, ADRs, the spec for this feature, and your PR template's checklist. Then it learns the unwritten rules by comparing each changed file with its untouched siblings. Every review ends with the list of what it read.
+
+**Do I need a `REVIEW.md`?** No, but it makes the review stricter: every line in it is a hard rule. If you don't have one, it offers to draft one from what it found.
+
+**What if my repo has no docs at all?** It still runs all four lenses in full and holds the PR to the patterns in your existing code.
 
 **Will it run the PR's code?** No, not unless you ask. It reads CI results instead, because a PR from a fork can run anything.
 
@@ -33,4 +37,4 @@ Whenever a PR needs a review: yours before you ask a colleague, a teammate's, or
 - Most comments come with a fix, many as one click suggestions.
 - A review rarely has more than 15 comments, and nits never outnumber real findings.
 - Re-reviews close threads, not just add new ones.
-- The summary says what wasn't checked, so a clean review means clean.
+- The summary lists the standards it used and what it skipped, so a clean review means clean.

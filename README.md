@@ -83,9 +83,11 @@ The agent reads the diff, splits it into one commit per change, and writes Conve
 
 You get a verdict and a one line summary of every comment. The full draft is saved to a file you can edit. Nothing is posted until you say go, and then you choose: post it, post your edited version, or post it as a pending review you finish in GitHub. After the author pushes fixes, run the same command again for the next round.
 
-### 4. Teach it your rules (optional, recommended)
+### 4. Teach it your rules (optional)
 
-Add a `REVIEW.md` at the root of any repo (or in `.github/`). `/review` treats every line in it as a hard rule, ahead of everything else it reads. Write the rules you'd hate to see broken:
+You don't have to. `/review` finds your standards on its own: agent files like `CLAUDE.md` and `AGENTS.md` (including nested ones), `CONTRIBUTING.md`, design and architecture docs, ADRs, specs, your PR template's checklist, and the patterns your existing code already follows. Every review ends with a list of what it read, so you can see nothing was missed.
+
+To make it stricter, add a `REVIEW.md` at the root of any repo (or in `.github/`). Every line in it is treated as a hard rule, ahead of everything else. Write the rules you'd hate to see broken:
 
 ```markdown
 # Review rules
@@ -96,7 +98,7 @@ Add a `REVIEW.md` at the root of any repo (or in `.github/`). `/review` treats e
 - User facing strings live in the translation files, never inline.
 ```
 
-`/review` also reads `CLAUDE.md`, `AGENTS.md`, `CONTRIBUTING.md` and your docs, so many repos are covered already.
+No `REVIEW.md` yet? At the end of a review, `/review` offers to draft one from everything it found.
 
 ### Updating
 
