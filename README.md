@@ -68,6 +68,12 @@ Zip a skill folder (for example `skills/engineering/review`) and upload it under
 
 In Claude Code, type `/` and look for `review` (npx install) or `sahildavid-dev:review` (plugin install) in the autocomplete list. With npx you can also run `npx skills@latest list`; with the plugin, run `/plugin` and look under **Installed**. In other agents, check their skills or slash command list.
 
+**Seeing `Unknown command`?**
+
+- **Use the right name for how you installed.** With npx it's `/review`. The `/sahildavid-dev:review` form only works with the plugin.
+- **Claude Code can't see npx skills?** The installer may have put them only in `~/.agents/skills`, which Claude Code doesn't read. Install for Claude Code by name: `npx skills@latest add sahildavid-dev/skills -g -a claude-code`.
+- **Restart the session.** Claude Code only picks up new skills when a session starts.
+
 ### 3. Use them
 
 There are two kinds of skill here, and you use them differently:
