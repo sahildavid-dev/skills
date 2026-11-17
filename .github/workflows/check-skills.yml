@@ -1,0 +1,28 @@
+name: check-skills
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # the version bump check diffs against the base commit
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Check skills are wired up and versioned
+        env:
+          # PRs compare against the base branch; pushes compare against the previous tip.
+          # A new branch pushes an all-zero "before", which the script skips.
+          BASE_SHA: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || github.event.before }}
+        run: node scripts/check-skills.mjs
