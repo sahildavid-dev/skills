@@ -10,7 +10,31 @@ I've spent 11 years shipping software, and the same thing keeps happening with c
 
 ### 1. Get the skills
 
-A plugin updates itself. [skills.sh](https://skills.sh/sahildavid-dev/skills) copies editable files into your project, and you update them by hand. Pick one per agent, because installing both gives you every skill twice.
+There are two ways in. Pick **one** per agent, because installing both gives you every skill twice.
+
+#### Option A: npx (any agent)
+
+One command, works with Claude Code, Codex, Cursor, Windsurf, OpenCode, Amp and more. It copies the skills into your project as plain files you can read and edit.
+
+```bash
+npx skills@latest add sahildavid-dev/skills
+```
+
+It asks which skills you want and which agents to install them for. Or skip the questions:
+
+```bash
+npx skills@latest add sahildavid-dev/skills --list                    # see what's available
+npx skills@latest add sahildavid-dev/skills --all                     # every skill, every agent, no prompts
+npx skills@latest add sahildavid-dev/skills -s review                 # just one skill
+npx skills@latest add sahildavid-dev/skills -s review -a claude-code  # one skill, one agent
+npx skills@latest add sahildavid-dev/skills -g                        # global: every project on this machine
+```
+
+Skills installed this way run by their plain name: `/review`, `/commit`.
+
+To update, run `npx skills@latest update`, and re-run `add` to pick up new skills. To remove one, `npx skills@latest remove review`.
+
+#### Option B: plugin (updates itself)
 
 <details>
 <summary><strong>Claude Code</strong></summary>
@@ -22,7 +46,7 @@ claude plugin install sahildavid-dev@sahildavid-dev
 
 Or from inside a session: `/plugin marketplace add sahildavid-dev/skills`, then `/plugin install sahildavid-dev@sahildavid-dev`.
 
-Skills then run as `/sahildavid-dev:<skill>`, for example `/sahildavid-dev:review 42`.
+Skills installed as a plugin run with the plugin's name in front: `/sahildavid-dev:review`, `/sahildavid-dev:commit`.
 
 </details>
 
@@ -36,27 +60,13 @@ codex plugin add sahildavid-dev@sahildavid-dev
 
 </details>
 
-<details>
-<summary><strong>Any other agent, or editable files</strong> (manual updates)</summary>
+#### Claude app (web, desktop, mobile)
 
-```bash
-npx skills@latest add sahildavid-dev/skills -a <agent>  # cursor, opencode, windsurf, amp; omit -a to choose
-```
-
-To update, run `npx skills@latest update`, and re-run `add` to pick up new skills.
-
-</details>
-
-<details>
-<summary><strong>Claude app</strong> (web, desktop, mobile)</summary>
-
-Zip a skill folder (for example `skills/engineering/commit`) and upload it under Settings, Skills.
-
-</details>
+Zip a skill folder (for example `skills/engineering/review`) and upload it under Settings, Skills.
 
 ### 2. Check they're there
 
-In Claude Code, type `/sahildavid-dev` and the skills appear in the autocomplete list. You can also run `/plugin` to see the plugin under **Installed**. In other agents, look in their skills or slash command list.
+In Claude Code, type `/` and look for `review` (npx install) or `sahildavid-dev:review` (plugin install) in the autocomplete list. With npx you can also run `npx skills@latest list`; with the plugin, run `/plugin` and look under **Installed**. In other agents, check their skills or slash command list.
 
 ### 3. Use them
 
@@ -73,7 +83,7 @@ commit this
 
 The agent reads the diff, splits it into one commit per change, and writes Conventional Commit messages. It follows your repo's own commit rules if you have any (commitlint, hooks, `CONTRIBUTING.md`), and it never pushes. Want just one file in? Stage it yourself first and it commits exactly that.
 
-**Review** (user-invoked). You need the [GitHub CLI](https://cli.github.com) signed in once with `gh auth login`. Then, from inside the repo:
+**Review** (user-invoked). You need the [GitHub CLI](https://cli.github.com) signed in once with `gh auth login`. Then, from inside the repo (examples use the plugin name; with npx, it's just `/review`):
 
 ```
 /sahildavid-dev:review 42
@@ -102,7 +112,7 @@ No `REVIEW.md` yet? At the end of a review, `/review` offers to draft one from e
 
 ### Updating
 
-Plugin installs update themselves. With skills.sh, run `npx skills@latest update`. See [CHANGELOG.md](./CHANGELOG.md) for what changed.
+Plugin installs update themselves. With npx, run `npx skills@latest update`. See [CHANGELOG.md](./CHANGELOG.md) for what changed.
 
 ## Why These Skills Exist
 
