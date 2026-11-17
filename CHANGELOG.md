@@ -1,5 +1,12 @@
 # sahildavid-dev
 
+## 0.2.2
+
+### Patch Changes
+
+- `review` no longer depends on a `REVIEW.md`. It lists every doc in the repo and reads its standards by tier: review checklists and existing review commands, agent and contributor rules (including nested `CLAUDE.md` and `AGENTS.md`), design and architecture docs, ADRs, specs, and the PR template's checklist. It also learns unwritten rules by comparing each changed file with its untouched siblings ([STANDARDS.md](./skills/engineering/review/STANDARDS.md)).
+- `review` hands every lens one rule digest with sources, ends each review with the standards it used, and offers to draft a `REVIEW.md` when the repo has none.
+
 ## 0.2.1
 
 ### Patch Changes
