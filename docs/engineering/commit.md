@@ -6,7 +6,7 @@ Turns whatever is in your working tree into a clean, readable git history. The a
 
 ## When to reach for it
 
-You don't have to. It's model-invoked, so the agent loads it on its own whenever it's about to commit. Type `/sahildavid-dev:commit` when you want to trigger it yourself, for example at the end of a session with a pile of unrelated changes.
+You don't have to. It's model-invoked, so the agent loads it on its own whenever it's about to commit. Type `/sd:commit` when you want to trigger it yourself, for example at the end of a session with a pile of unrelated changes.
 
 ## Common questions
 

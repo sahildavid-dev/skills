@@ -1,4 +1,10 @@
-# sahildavid-dev
+# sd
+
+## 0.3.0
+
+### Minor Changes
+
+- The plugin is now named `sd`, so skills run as `/sd:review` and `/sd:commit`, easy to tell apart from other `review` skills. Existing installs keep the old name: run `claude plugin uninstall sahildavid-dev@sahildavid-dev`, then `claude plugin install sd@sahildavid-dev`. npx installs are unchanged and still run as `/review`.
 
 ## 0.2.2
 

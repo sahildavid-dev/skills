@@ -11,8 +11,8 @@ It also handles later rounds. On a re-review it looks only at what changed since
 Whenever a PR needs a review: yours before you ask a colleague, a teammate's, or an open source contribution. Run it again after the author pushes fixes.
 
 ```
-/sahildavid-dev:review 42
-/sahildavid-dev:review https://github.com/owner/repo/pull/42
+/sd:review 42
+/sd:review https://github.com/owner/repo/pull/42
 ```
 
 ## Common questions

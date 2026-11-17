@@ -1,6 +1,6 @@
 {
-  "name": "sahildavid-dev",
-  "version": "0.2.2",
+  "name": "sd",
+  "version": "0.3.0",
   "description": "Sahil David's agent skills for real engineering: verified PR reviews, clean Conventional Commits and more. Small, composable, and built for Claude Code, Codex and any agent that reads SKILL.md.",
   "author": {
     "name": "Sahil David",

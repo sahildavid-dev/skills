@@ -41,12 +41,12 @@ To update, run `npx skills@latest update`, and re-run `add` to pick up new skill
 
 ```bash
 claude plugin marketplace add sahildavid-dev/skills
-claude plugin install sahildavid-dev@sahildavid-dev
+claude plugin install sd@sahildavid-dev
 ```
 
-Or from inside a session: `/plugin marketplace add sahildavid-dev/skills`, then `/plugin install sahildavid-dev@sahildavid-dev`.
+Or from inside a session: `/plugin marketplace add sahildavid-dev/skills`, then `/plugin install sd@sahildavid-dev`.
 
-Skills installed as a plugin run with the plugin's name in front: `/sahildavid-dev:review`, `/sahildavid-dev:commit`.
+Skills installed as a plugin run with the plugin's name in front: `/sd:review`, `/sd:commit`.
 
 </details>
 
@@ -55,7 +55,7 @@ Skills installed as a plugin run with the plugin's name in front: `/sahildavid-d
 
 ```bash
 codex plugin marketplace add sahildavid-dev/skills
-codex plugin add sahildavid-dev@sahildavid-dev
+codex plugin add sd@sahildavid-dev
 ```
 
 </details>
@@ -66,11 +66,11 @@ Zip a skill folder (for example `skills/engineering/review`) and upload it under
 
 ### 2. Check they're there
 
-In Claude Code, type `/` and look for `review` (npx install) or `sahildavid-dev:review` (plugin install) in the autocomplete list. With npx you can also run `npx skills@latest list`; with the plugin, run `/plugin` and look under **Installed**. In other agents, check their skills or slash command list.
+In Claude Code, type `/` and look for `review` (npx install) or `sd:review` (plugin install) in the autocomplete list. With npx you can also run `npx skills@latest list`; with the plugin, run `/plugin` and look under **Installed**. In other agents, check their skills or slash command list.
 
 **Seeing `Unknown command`?**
 
-- **Use the right name for how you installed.** With npx it's `/review`. The `/sahildavid-dev:review` form only works with the plugin.
+- **Use the right name for how you installed.** With npx it's `/review`. The `/sd:review` form only works with the plugin.
 - **Claude Code can't see npx skills?** The installer may have put them only in `~/.agents/skills`, which Claude Code doesn't read. Install for Claude Code by name: `npx skills@latest add sahildavid-dev/skills -g -a claude-code`.
 - **Restart the session.** Claude Code only picks up new skills when a session starts.
 
@@ -92,9 +92,9 @@ The agent reads the diff, splits it into one commit per change, and writes Conve
 **Review** (user-invoked). You need the [GitHub CLI](https://cli.github.com) signed in once with `gh auth login`. Then, from inside the repo (examples use the plugin name; with npx, it's just `/review`):
 
 ```
-/sahildavid-dev:review 42
-/sahildavid-dev:review https://github.com/owner/repo/pull/42
-/sahildavid-dev:review            # the PR for your current branch
+/sd:review 42
+/sd:review https://github.com/owner/repo/pull/42
+/sd:review            # the PR for your current branch
 ```
 
 You get a verdict and a one line summary of every comment. The full draft is saved to a file you can edit. Nothing is posted until you say go, and then you choose: post it, post your edited version, or post it as a pending review you finish in GitHub. After the author pushes fixes, run the same command again for the next round.

@@ -7,7 +7,7 @@
   "description": "Sahil David's skills for real engineering, as an installable Claude Code plugin.",
   "plugins": [
     {
-      "name": "sahildavid-dev",
+      "name": "sd",
       "source": "./",
       "description": "Sahil David's agent skills for real engineering (verified PR reviews, clean Conventional Commits and more).",
       "category": "engineering",
