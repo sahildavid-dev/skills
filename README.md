@@ -6,7 +6,9 @@ The agent skills I use every day for real engineering work. Built for Claude Cod
 
 I've spent 11 years shipping software, and the same thing keeps happening with coding agents: they're fast, but they don't share your standards unless you write them down. These skills are where I write them down. Each one is small, does one job, and works with any model. Take them, change them, make them yours.
 
-## Installation (30 second setup)
+## Getting Started (30 second setup)
+
+### 1. Get the skills
 
 A plugin updates itself. [skills.sh](https://skills.sh/sahildavid-dev/skills) copies editable files into your project, and you update them by hand. Pick one per agent, because installing both gives you every skill twice.
 
@@ -51,6 +53,54 @@ To update, run `npx skills@latest update`, and re-run `add` to pick up new skill
 Zip a skill folder (for example `skills/engineering/commit`) and upload it under Settings, Skills.
 
 </details>
+
+### 2. Check they're there
+
+In Claude Code, type `/sahildavid-dev` and the skills appear in the autocomplete list. You can also run `/plugin` to see the plugin under **Installed**. In other agents, look in their skills or slash command list.
+
+### 3. Use them
+
+There are two kinds of skill here, and you use them differently:
+
+- **Model-invoked** skills load on their own when the agent sees they fit. You just talk normally.
+- **User-invoked** skills only run when you type them. These are the ones that act on the outside world, like posting to GitHub, so they wait for you.
+
+**Commit** (model-invoked). Make some changes, then say:
+
+```
+commit this
+```
+
+The agent reads the diff, splits it into one commit per change, and writes Conventional Commit messages. It follows your repo's own commit rules if you have any (commitlint, hooks, `CONTRIBUTING.md`), and it never pushes. Want just one file in? Stage it yourself first and it commits exactly that.
+
+**Review** (user-invoked). You need the [GitHub CLI](https://cli.github.com) signed in once with `gh auth login`. Then, from inside the repo:
+
+```
+/sahildavid-dev:review 42
+/sahildavid-dev:review https://github.com/owner/repo/pull/42
+/sahildavid-dev:review            # the PR for your current branch
+```
+
+You get a verdict and a one line summary of every comment. The full draft is saved to a file you can edit. Nothing is posted until you say go, and then you choose: post it, post your edited version, or post it as a pending review you finish in GitHub. After the author pushes fixes, run the same command again for the next round.
+
+### 4. Teach it your rules (optional, recommended)
+
+Add a `REVIEW.md` at the root of any repo (or in `.github/`). `/review` treats every line in it as a hard rule, ahead of everything else it reads. Write the rules you'd hate to see broken:
+
+```markdown
+# Review rules
+
+- Database queries live in the repository layer, never in route handlers.
+- Every new API route has a row in `docs/API.md`.
+- No `any` in TypeScript. No unchecked casts.
+- User facing strings live in the translation files, never inline.
+```
+
+`/review` also reads `CLAUDE.md`, `AGENTS.md`, `CONTRIBUTING.md` and your docs, so many repos are covered already.
+
+### Updating
+
+Plugin installs update themselves. With skills.sh, run `npx skills@latest update`. See [CHANGELOG.md](./CHANGELOG.md) for what changed.
 
 ## Why These Skills Exist
 
