@@ -15,10 +15,12 @@ A plugin updates itself. [skills.sh](https://skills.sh/sahildavid-dev/skills) co
 
 ```bash
 claude plugin marketplace add sahildavid-dev/skills
-claude plugin install sahildavid-skills@sahildavid-dev
+claude plugin install sahildavid-dev@sahildavid-dev
 ```
 
-Or from inside a session: `/plugin marketplace add sahildavid-dev/skills`, then `/plugin install sahildavid-skills@sahildavid-dev`.
+Or from inside a session: `/plugin marketplace add sahildavid-dev/skills`, then `/plugin install sahildavid-dev@sahildavid-dev`.
+
+Skills then run as `/sahildavid-dev:<skill>`, for example `/sahildavid-dev:review 42`.
 
 </details>
 
@@ -27,7 +29,7 @@ Or from inside a session: `/plugin marketplace add sahildavid-dev/skills`, then 
 
 ```bash
 codex plugin marketplace add sahildavid-dev/skills
-codex plugin add sahildavid-skills@sahildavid-dev
+codex plugin add sahildavid-dev@sahildavid-dev
 ```
 
 </details>
@@ -58,11 +60,23 @@ Zip a skill folder (for example `skills/engineering/commit`) and upload it under
 
 **The Fix** is to use [`/commit`](./skills/engineering/commit/SKILL.md). The agent reads the diff and your recent history, splits the work into one commit per logical change, and writes each one as a [Conventional Commit](https://www.conventionalcommits.org/en/v1.0.0/): `fix(cart): keep quantity when the item variant changes`. Your log starts reading like a changelog.
 
+### #2: The Review Nobody Trusts
+
+**The Problem.** AI code reviews are loud. Twenty comments on a small PR, half of them wrong, a few of them "consider adding error handling" with no idea where or why. Authors learn to skim, and the one comment that mattered gets skimmed with the rest. Human reviews have the opposite problem: they read the hunks, approve, and miss the bug that lives in the caller two files away.
+
+**The Fix** is to use [`/review`](./skills/engineering/review/SKILL.md). It judges the PR against your repo's own rules, reads every changed file in full plus the code that calls it, and runs four reviewers in parallel: **Correctness**, **Safety**, **Fit**, and **Intent and proof**. Then it tries to prove each finding *wrong* before you ever see it. A finding with no concrete failure scenario becomes a question or gets dropped. What survives is posted as short, warm inline comments with one click fixes, but only after you say go.
+
+It remembers where it left off, too. Run it again after the author pushes, and it reviews only what changed, resolves the threads that were fixed, and checks the fixes didn't break something else.
+
 More fixes coming as I hit more failure modes.
 
 ## Reference
 
 ### Engineering
+
+**User-invoked**
+
+- **[review](./skills/engineering/review/SKILL.md)**: Review a GitHub pull request through four parallel lenses, verify every finding, and post warm inline comments only after you say go. Handles re-reviews.
 
 **Model-invoked**
 
