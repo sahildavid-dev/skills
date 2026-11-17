@@ -21,7 +21,9 @@ Each bucket folder has a `README.md` listing every skill in it with a one-line d
 
 Promoted skills also get a docs page at `docs/<bucket>/<skill-name>.md` with four sections: **What it does**, **When to reach for it**, **Common questions**, **It's working if**. Create or update it whenever you add a skill or change how one behaves.
 
-Record every user-visible change in `CHANGELOG.md` under the next version, and bump `version` in `.claude-plugin/plugin.json` when releasing.
+Record every user-visible change in `CHANGELOG.md` under the next version, and bump `version` in `.claude-plugin/plugin.json` when releasing. Installs only update when that version changes.
+
+Before committing, run `BASE_SHA=origin/main node scripts/check-skills.mjs`. It checks every rule in this file that a script can check: skills listed in `plugin.json`, READMEs and docs pages, matching frontmatter names, invocation settings in sync, no em dashes, and a version bump plus changelog entry whenever a shipped skill changes. CI runs the same check on every PR and every push to `main`.
 
 To link every skill outside `deprecated/` and `misc/` into `~/.claude/skills` and `~/.agents/skills`, run `scripts/link-skills.sh`. Each entry is a symlink into this repo, so a `git pull` keeps installed skills current.
 
