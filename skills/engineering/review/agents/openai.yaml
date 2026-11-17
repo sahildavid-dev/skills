@@ -1,0 +1,5 @@
+interface:
+  display_name: "Review"
+  short_description: "Verified, warm PR review that waits for your go-ahead"
+policy:
+  allow_implicit_invocation: false

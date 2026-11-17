@@ -6,7 +6,7 @@ Daily code work.
 
 Reachable only when you type them (Claude Code: `disable-model-invocation: true`; Codex: `policy.allow_implicit_invocation: false` in `agents/openai.yaml`).
 
-None yet.
+- **[review](./review/SKILL.md)**: Review a GitHub pull request through four parallel lenses, verify every finding, and post warm inline comments only after you say go. Handles re-reviews.
 
 ## Model-invoked
 
